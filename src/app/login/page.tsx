@@ -38,7 +38,7 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        localStorage.setItem("session", response.data.token);
+        localStorage.setItem("token", response.data.token);
         router.push("/homePage");
       } else {
         setError("A senha está incorreta");
@@ -97,12 +97,12 @@ export default function Login() {
             </Link>
           </h3>
 
-          <div className="voltar">
+          {/* <div className="voltar">
             <Link className="link-voltar" href={"/homePage"}>
               <Image src={voltar} alt="" />
               Voltar
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

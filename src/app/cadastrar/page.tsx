@@ -132,12 +132,12 @@ export default function Cadastro() {
             </Link>
           </h3>
 
-          <div className="voltar">
+          {/* <div className="voltar">
             <Link className="link-voltar" href={"/homePage"}>
               <Image src={voltar} alt="" />
               Voltar
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

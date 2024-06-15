@@ -20,7 +20,7 @@ export default function HomePage() {
     <>
       <nav>
         <div className="logo">
-          <Image src={logo} alt=""/>
+          <Image src={logo} alt="" />
         </div>
         <div className="links-nav">
           <ul>
@@ -35,7 +35,7 @@ export default function HomePage() {
               </Link>
             </li>
             <li>
-              <Link className="link" href={"/listar"}>
+              <Link className="link" href={"/produtos"}>
                 Produtos
               </Link>
             </li>
@@ -43,7 +43,7 @@ export default function HomePage() {
         </div>
         <div className="link-login">
           <Link className="link" href={"/login"}>
-            Login
+            {localStorage.getItem("token") ? "Logout" : "Login"}
           </Link>
         </div>
       </nav>
@@ -96,17 +96,18 @@ export default function HomePage() {
 
         <div className="cardapio">
           <h2>Acesse o nosso cardápio!</h2>
-          <p>Descubra nossas deliciosas pizzas, feitas com ingredientes frescos e receitas artesanais. Explore a variedade de sabores e combinações que preparamos especialmente para você!</p>
+          <p>
+            Descubra nossas deliciosas pizzas, feitas com ingredientes frescos e
+            receitas artesanais. Explore a variedade de sabores e combinações
+            que preparamos especialmente para você!
+          </p>
 
-          <Link className="link-cardapio" href={"/listar"}>
-                Acessar
-              </Link>
+          <Link className="link-cardapio" href={"/produtos"}>
+            Acessar
+          </Link>
         </div>
 
-        <footer>
-        © 2024 La Pizzaria. Todos os direitos reservados.
-        </footer>
-
+        <footer>© 2024 La Pizzaria. Todos os direitos reservados.</footer>
       </div>
     </>
   );

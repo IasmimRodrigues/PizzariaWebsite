@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
+import logo from "./logo.svg";
+
 import voltar from "./voltar.svg";
 
 export default function Cadastro() {
@@ -31,25 +33,37 @@ export default function Cadastro() {
     formData.append("nome", nome);
     formData.append("preco", preco);
     formData.append("descricao", descricao);
-    formData.append("banner", banner);
+    formData.append("file", banner);
     formData.append("id_categoria", id_categoria);
 
     try {
-      const response = await axios.post("http://localhost:3333/product", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token não encontrado. Faça login novamente.");
+      }
+      const response = await axios.post(
+        "http://localhost:3333/product",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
       if (response.status === 200) {
         // Aqui você pode decidir o que fazer após cadastrar o produto com sucesso
-        router.push("/pagina-de-sucesso");
+        router.push("/produtos");
       } else {
         setError(response.data.error);
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        setError(error.response.data.error || "Erro ao tentar cadastrar o produto. Tente novamente.");
+        setError(
+          error.response.data.error ||
+            "Erro ao tentar cadastrar o produto. Tente novamente."
+        );
       } else {
         setError("Erro ao tentar cadastrar o produto. Tente novamente.");
       }
@@ -65,19 +79,46 @@ export default function Cadastro() {
 
   return (
     <>
-      <div className="content-cadastro">
-        <div className="cadastro">
+      <nav>
+        <div className="logo">
+          <Image src={logo} alt="" />
+        </div>
+        <div className="links-nav">
+          <ul>
+            <li>
+              <Link className="link" href={"/homePage"}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="link" href={"/cadastrarProd"}>
+                Cadastrar
+              </Link>
+            </li>
+            <li>
+              <Link className="link" href={"/produtos"}>
+                Produtos
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="link-login">
+          <Link className="link" href={"/login"}>
+          {localStorage.getItem('token') ? 'Logout' : 'Login'}
+          </Link>
+        </div>
+      </nav>
+      <div className="content-login">
+        <div className="login">
           <div className="title">
             <h2>Cadastro de Produto</h2>
-            <span>
-              Cadastre seu produto abaixo.
-            </span>
+            <span>Cadastre seu produto abaixo.</span>
           </div>
 
           <div className="form">
             <form onSubmit={cadastrarProduto}>
               <div className="input">
-                <label htmlFor="nome">Nome:</label>
+                <label htmlFor="nome">Sabor:</label>
                 <input
                   onChange={(event) => setNome(event.target.value)}
                   type="text"
@@ -99,7 +140,7 @@ export default function Cadastro() {
               </div>
 
               <div className="input input-margin">
-                <label htmlFor="descricao">Descrição:</label>
+                <label htmlFor="descricao">Ingredientes:</label>
                 <input
                   onChange={(event) => setDescricao(event.target.value)}
                   type="text"
@@ -123,23 +164,16 @@ export default function Cadastro() {
 
               {error && <p className="error">⚠️ {error}</p>}
 
-              <button type="submit">Cadastrar Produto</button>
+              <button type="submit">Cadastrar</button>
             </form>
           </div>
 
-          <h3 className="link-cadastro">
-            Já possui cadastro?
-            <Link className="link" href={"/login"}>
-              Clique aqui e faça seu login!
-            </Link>
-          </h3>
-
-          <div className="voltar">
+          {/* <div className="voltar">
             <Link className="link-voltar" href={"/homePage"}>
               <Image src={voltar} alt="Voltar" />
               Voltar
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
