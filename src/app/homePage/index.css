@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background: #FAF3E1;
+}
+
+nav {
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+}
+
+nav .logo {
+    width: 80px;
+}
+
+nav .links-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav .links-nav ul li {
+    font-size: 15px;
+    color: #FAF3E195;
+    transition: 0.3s;
+}
+
+nav .links-nav ul li:hover {
+    color: #F5E6C5;
+}
+
+nav .link-login .link {
+    background: #FF6E1F;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav .link-login:hover {
+    background: #ec5f14;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 50px;
+}
+
+.cards .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    gap: 5px;
+}
+
+.cards .card .imageCard {
+    width: 30px;
+    margin-bottom: 10px;
+}
+
+.cards .card h3 {
+    color: #222;
+    font-weight: 600;
+    text-align: center;
+}
+
+.cards .card p {
+    text-align: center;
+    color: #222;
+    font-size: 15px;
+}
+
+.cardapio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.cardapio h2 {
+    color: #FF6E1F;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cardapio p {
+    color: #222;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.cardapio .link-cardapio {
+    background: #FF6E1F;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.cardapio .link-cardapio:hover {
+    background: #ec5f14;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    padding: 25px 35px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+/* MEDIA QUERY */
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    nav .links-nav ul {
+        gap: 55px;
+    }
+
+    nav .links-nav ul li {
+        font-size: 18px;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        padding: 80px 50px;
+    }
+
+    .cardapio p {
+        width: 60%;
+    }
+  }
+
+
+@media (min-width: 1200px) {
+    nav .links-nav ul {
+        gap: 55px;
+    }
+
+    nav .links-nav ul li {
+        font-size: 18px;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        padding: 80px 50px;
+    }
+
+    .cardapio p {
+        width: 40%;
+    }
+  }
